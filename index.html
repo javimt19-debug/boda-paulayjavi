@@ -1381,13 +1381,13 @@
   updateCountdown();
   setInterval(updateCountdown, 1000);
 
-  // ----- FORMULARIO (envío a Google Forms) -----
-  // CONFIGURACIÓN: pega aquí la URL de envío de tu Google Form
-  // (la que termina en /formResponse, NO la del viewform).
-  // Encontrarás cómo obtenerla en las instrucciones de Claude.
+  // ----- FORMULARIO (envío a Google Forms vía iframe oculto) -----
+  // Técnica más fiable que fetch: usamos el comportamiento clásico de los forms HTML.
+  // El form envía sus datos a un iframe oculto, igual que si fuera una navegación
+  // normal, y los bloqueadores/CORS no lo bloquean.
   const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeoQW05A5jXITrNtZD6DMsafAdVUgAPyH4C-6RRN8LDGApwaA/formResponse';
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     const form = document.getElementById('rsvpForm');
     const submitBtn = form.querySelector('.submit-btn');
@@ -1395,25 +1395,33 @@
     submitBtn.textContent = 'Enviando...';
     submitBtn.disabled = true;
 
-    try {
-      const formData = new FormData(form);
-      // Google Forms requiere envío con no-cors (no podemos leer la respuesta,
-      // pero el envío sí llega correctamente al formulario)
-      await fetch(GOOGLE_FORM_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-      });
+    // Crear o reutilizar el iframe oculto que recibirá la respuesta
+    let iframe = document.getElementById('hidden_iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.name = 'hidden_iframe';
+      iframe.id = 'hidden_iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
 
-      // Como con no-cors no podemos verificar éxito real, asumimos OK
+    // Configurar el form para que envíe al iframe oculto
+    form.action = GOOGLE_FORM_URL;
+    form.method = 'POST';
+    form.target = 'hidden_iframe';
+
+    // Listener para cuando el iframe termine de cargar (= envío completado)
+    const onLoaded = () => {
+      iframe.removeEventListener('load', onLoaded);
       form.style.display = 'none';
       document.getElementById('successMessage').classList.add('show');
       document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    } catch (err) {
-      alert('Ha habido un problema al enviar la confirmación. Comprueba tu conexión e inténtalo de nuevo.');
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-    }
+    };
+    iframe.addEventListener('load', onLoaded);
+
+    // Disparar el envío real del formulario
+    form.submit();
+
     return false;
   }
 
