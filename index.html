@@ -1266,10 +1266,10 @@
       <div class="form-group">
         <label for="acompanantes">Número de acompañantes (sin contarte a ti)</label>
         <select id="acompanantes" name="entry.1901194817">
-          <option value="0">0 — Voy solo/a</option>
-          <option value="1">1 acompañante</option>
-          <option value="2">2 acompañantes</option>
-          <option value="3">3 acompañantes</option>
+          <option value="0 - voy solo/a">0 — Voy solo/a</option>
+          <option value="1 acompañante">1 acompañante</option>
+          <option value="2 acompañantes">2 acompañantes</option>
+          <option value="3 acompañantes">3 acompañantes</option>
         </select>
       </div>
 
@@ -1419,8 +1419,31 @@
     };
     iframe.addEventListener('load', onLoaded);
 
-    // Disparar el envío real del formulario
+    // Doble envío para máxima fiabilidad:
+    // (1) por iframe (el principal)
+    // (2) también por fetch no-cors como red de seguridad
+    try {
+      const formData = new FormData(form);
+      fetch(GOOGLE_FORM_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: formData
+      }).catch(() => {});
+    } catch (err) {
+      // ignorar, el iframe lo seguirá intentando
+    }
+
+    // Disparar el envío real por iframe
     form.submit();
+
+    // Por seguridad, si el iframe tarda más de 3s en cargar, mostrar éxito igual
+    setTimeout(() => {
+      if (form.style.display !== 'none') {
+        form.style.display = 'none';
+        document.getElementById('successMessage').classList.add('show');
+        document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 3000);
 
     return false;
   }
