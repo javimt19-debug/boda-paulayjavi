@@ -1419,24 +1419,10 @@
     };
     iframe.addEventListener('load', onLoaded);
 
-    // Doble envío para máxima fiabilidad:
-    // (1) por iframe (el principal)
-    // (2) también por fetch no-cors como red de seguridad
-    try {
-      const formData = new FormData(form);
-      fetch(GOOGLE_FORM_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        body: formData
-      }).catch(() => {});
-    } catch (err) {
-      // ignorar, el iframe lo seguirá intentando
-    }
-
-    // Disparar el envío real por iframe
+    // Disparar el envío del formulario al iframe oculto
     form.submit();
 
-    // Por seguridad, si el iframe tarda más de 3s en cargar, mostrar éxito igual
+    // Salvaguarda: si el iframe tarda más de 3s en cargar, mostramos éxito igualmente
     setTimeout(() => {
       if (form.style.display !== 'none') {
         form.style.display = 'none';
