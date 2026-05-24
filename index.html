@@ -898,6 +898,101 @@
     }
     .hero .date-line span.divider { width: 40px; }
   }
+
+  /* ---------- REGALO ---------- */
+  #regalo {
+    padding: 5rem 2rem;
+  }
+  .gift-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    position: relative;
+  }
+  .gift-card::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .gift-main {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: var(--accent-deep) !important;
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+  .gift-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft) !important;
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .gift-iban {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .gift-iban-label {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 300;
+  }
+  .gift-iban-number {
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    letter-spacing: 0.15em;
+    color: var(--ink);
+    margin-top: 0.2rem;
+    word-break: keep-all;
+  }
+  .gift-copy-btn {
+    margin-top: 1rem;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent-deep);
+    padding: 0.6rem 1.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 300;
+  }
+  .gift-copy-btn:hover {
+    background: var(--accent);
+    color: var(--cream);
+  }
+  .gift-copy-btn.copied {
+    background: var(--accent-deep);
+    color: var(--cream);
+    border-color: var(--accent-deep);
+  }
+  @media (max-width: 600px) {
+    .gift-iban-number {
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+    }
+    .gift-card {
+      padding: 2rem 1.2rem;
+    }
+  }
 </style>
 </head>
 <body>
@@ -913,6 +1008,7 @@
     <li><a href="#hoteles">Hoteles</a></li>
     <li><a href="#autobuses">Autobuses</a></li>
     <li><a href="#rsvp">Confirmar</a></li>
+    <li><a href="#regalo">Regalo</a></li>
   </ul>
 </nav>
 
@@ -993,7 +1089,7 @@
       <div class="timeline-content">
         <span class="timeline-time">18:30</span>
         <p class="timeline-event">Cóctel</p>
-        <p class="timeline-desc">Finca Torre Juana · Brindis y canapés</p>
+        <p class="timeline-desc">Finca Torre Juana</p>
       </div>
     </div>
     <div class="timeline-item">
@@ -1007,8 +1103,8 @@
     <div class="timeline-item">
       <div class="timeline-dot"></div>
       <div class="timeline-content">
-        <span class="timeline-time">23:00</span>
-        <p class="timeline-event">Baile</p>
+        <span class="timeline-time">22:30</span>
+        <p class="timeline-event">Fiesta</p>
         <p class="timeline-desc">Que no pare la música</p>
       </div>
     </div>
@@ -1168,7 +1264,7 @@
           <h4>↗ Ida</h4>
           <div class="bus-route-detail">
             <span class="label">Salida</span>
-            <span class="value">Plaza Puerta del Mar</span>
+            <span class="value">Calle Óscar Esplá 37, junto a Consellería</span>
           </div>
           <div class="bus-route-detail">
             <span class="label">Parada</span>
@@ -1338,6 +1434,30 @@
   </div>
 </section>
 
+<!-- REGALO -->
+<section id="regalo" style="background: var(--cream); max-width: none;">
+  <div style="max-width: 720px; margin: 0 auto; padding: 0 2rem;">
+    <div class="section-header">
+      <p class="section-eyebrow">Si quieres colaborar</p>
+      <h2 class="section-title">Regalo</h2>
+      <div class="ornament">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="gift-card">
+      <p class="gift-main">¡El mejor regalo es compartir este día con vosotros!</p>
+      <p class="gift-sub">Si, además, alguien desea apoyarnos en esta nueva etapa, aquí os compartimos la información:</p>
+      <div class="gift-iban">
+        <span class="gift-iban-label">Número de cuenta</span>
+        <span class="gift-iban-number">ES36 1583 0001 1791 1540 6377</span>
+        <button type="button" class="gift-copy-btn" onclick="copyIban(this)">Copiar IBAN</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="monogram">P &amp; J</div>
@@ -1434,6 +1554,43 @@
       document.querySelector('nav ul').classList.remove('open');
     });
   });
+
+  // ----- COPIAR IBAN -----
+  function copyIban(btn) {
+    const iban = 'ES36 1583 0001 1791 1540 6377';
+    const cleanIban = iban.replace(/\s/g, '');
+
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = cleanIban;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    };
+
+    const showCopied = () => {
+      const original = btn.textContent;
+      btn.textContent = '¡Copiado!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 2000);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(cleanIban).then(showCopied).catch(() => {
+        fallback();
+        showCopied();
+      });
+    } else {
+      fallback();
+      showCopied();
+    }
+  }
 </script>
 
 </body>
