@@ -953,41 +953,58 @@
     color: var(--accent);
     font-weight: 300;
   }
+  .gift-iban-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 0.3rem;
+  }
   .gift-iban-number {
     font-family: var(--font-serif);
     font-size: clamp(1rem, 2.2vw, 1.25rem);
     letter-spacing: 0.15em;
     color: var(--ink);
-    margin-top: 0.2rem;
     word-break: keep-all;
   }
   .gift-copy-btn {
-    margin-top: 1rem;
     background: transparent;
-    border: 1px solid var(--accent);
-    color: var(--accent-deep);
-    padding: 0.6rem 1.6rem;
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
+    border: none;
+    padding: 0.35rem;
+    margin: 0;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 300;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.1s ease;
+    line-height: 0;
+  }
+  .gift-copy-btn svg {
+    width: 18px;
+    height: 18px;
+    display: block;
   }
   .gift-copy-btn:hover {
-    background: var(--accent);
-    color: var(--cream);
+    color: var(--accent-deep);
+    background: rgba(139, 111, 71, 0.08);
+  }
+  .gift-copy-btn:active {
+    transform: scale(0.92);
   }
   .gift-copy-btn.copied {
-    background: var(--accent-deep);
-    color: var(--cream);
-    border-color: var(--accent-deep);
+    color: var(--accent-deep);
+  }
+  .gift-copy-btn .copied-check {
+    display: none;
   }
   @media (max-width: 600px) {
     .gift-iban-number {
       font-size: 0.95rem;
       letter-spacing: 0.08em;
+    }
+    .gift-iban-row {
+      gap: 0.6rem;
     }
     .gift-card {
       padding: 2rem 1.2rem;
@@ -1438,7 +1455,6 @@
 <section id="regalo" style="background: var(--cream); max-width: none;">
   <div style="max-width: 720px; margin: 0 auto; padding: 0 2rem;">
     <div class="section-header">
-      <p class="section-eyebrow">Si quieres colaborar</p>
       <h2 class="section-title">Regalo</h2>
       <div class="ornament">
         <span></span>
@@ -1451,8 +1467,15 @@
       <p class="gift-sub">Si, además, alguien desea apoyarnos en esta nueva etapa, aquí os compartimos la información:</p>
       <div class="gift-iban">
         <span class="gift-iban-label">Número de cuenta</span>
-        <span class="gift-iban-number">ES36 1583 0001 1791 1540 6377</span>
-        <button type="button" class="gift-copy-btn" onclick="copyIban(this)">Copiar IBAN</button>
+        <div class="gift-iban-row">
+          <span class="gift-iban-number">ES36 1583 0001 1791 1540 6377</span>
+          <button type="button" class="gift-copy-btn" onclick="copyIban(this)" aria-label="Copiar IBAN" title="Copiar IBAN">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="11" height="11" rx="1.5"/>
+              <path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1556,6 +1579,9 @@
   });
 
   // ----- COPIAR IBAN -----
+  const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/></svg>';
+  const CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 8"/></svg>';
+
   function copyIban(btn) {
     const iban = 'ES36 1583 0001 1791 1540 6377';
     const cleanIban = iban.replace(/\s/g, '');
@@ -1572,13 +1598,12 @@
     };
 
     const showCopied = () => {
-      const original = btn.textContent;
-      btn.textContent = '¡Copiado!';
+      btn.innerHTML = CHECK_ICON;
       btn.classList.add('copied');
       setTimeout(() => {
-        btn.textContent = original;
+        btn.innerHTML = COPY_ICON;
         btn.classList.remove('copied');
-      }, 2000);
+      }, 1800);
     };
 
     if (navigator.clipboard && window.isSecureContext) {
