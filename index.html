@@ -6,6 +6,7 @@
 <meta name="color-scheme" content="light" />
 <meta name="theme-color" content="#f5f1ea" />
 <meta name="supported-color-schemes" content="light" />
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no" />
 <title>Paula & Javi · 03.10.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -959,12 +960,17 @@
     gap: 0.9rem;
     margin-top: 0.3rem;
   }
-  .gift-iban-number {
+  .gift-iban-number,
+  .gift-iban-number a {
     font-family: var(--font-serif);
     font-size: clamp(1rem, 2.2vw, 1.25rem);
     letter-spacing: 0.15em;
-    color: var(--ink);
+    color: var(--ink) !important;
     word-break: keep-all;
+    text-decoration: none !important;
+    -webkit-text-decoration: none !important;
+    background: transparent !important;
+    pointer-events: none;
   }
   .gift-copy-btn {
     background: transparent;
@@ -1468,7 +1474,7 @@
       <div class="gift-iban">
         <span class="gift-iban-label">Número de cuenta</span>
         <div class="gift-iban-row">
-          <span class="gift-iban-number">ES36 1583 0001 1791 1540 6377</span>
+          <span class="gift-iban-number" translate="no">ES36&nbsp;1583&nbsp;0001&nbsp;1791&nbsp;1540&nbsp;6377</span>
           <button type="button" class="gift-copy-btn" onclick="copyIban(this)" aria-label="Copiar IBAN" title="Copiar IBAN">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <rect x="9" y="9" width="11" height="11" rx="1.5"/>
