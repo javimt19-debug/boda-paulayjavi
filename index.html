@@ -1016,6 +1016,42 @@
       padding: 2rem 1.2rem;
     }
   }
+
+  /* ---------- FOTO MEMORIA (abuelos Santa Faz) ---------- */
+  .memory-photo {
+    margin: 1.8rem 0 0;
+    max-width: 230px;
+  }
+  .memory-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--line);
+    padding: 6px;
+    background: var(--cream);
+    box-shadow: 0 6px 18px rgba(42, 36, 24, 0.08);
+    border-radius: 2px;
+  }
+  .memory-photo figcaption {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    line-height: 1.4;
+    text-align: left;
+    padding-left: 6px;
+  }
+  @media (max-width: 900px) {
+    .memory-photo {
+      max-width: 200px;
+      margin: 1.5rem auto 0;
+    }
+    .memory-photo figcaption {
+      text-align: center;
+      padding-left: 0;
+    }
+  }
 </style>
 </head>
 <body>
@@ -1079,11 +1115,13 @@
     <h2 class="section-title">Bienvenidos</h2>
     <div class="ornament">
       <span></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4c-2.5 0-4.5 1-5.5 2.5.7-.3 1.5-.4 2.3-.3-1.4.6-2.5 1.7-2.8 3.3.9-.6 1.9-.8 2.9-.8-1.6 1-2.5 2.7-2.5 4.5.8-.7 1.8-1.1 2.8-1.2-1 1.4-1.4 3-1.2 4.5 1-.6 1.9-1.5 2.6-2.5l-.6 7h2.2l-.6-7c.7 1 1.6 1.9 2.6 2.5.2-1.5-.2-3.1-1.2-4.5 1 .1 2 .5 2.8 1.2 0-1.8-.9-3.5-2.5-4.5 1 0 2 .2 2.9.8-.3-1.6-1.4-2.7-2.8-3.3.8-.1 1.6 0 2.3.3C16.5 5 14.5 4 12 4z"/></svg>
       <span></span>
     </div>
   </div>
   <p class="intro-text">
-    Con enorme ilusión queremos compartir con vosotros uno de los días más importantes de nuestras vidas. Vuestra compañía hará que este momento sea inolvidable. En esta web encontraréis toda la información necesaria para acompañarnos el próximo 3 de octubre en Alicante.
+    Qué suerte poder celebrar un día tan especial con la gente que más queremos.<br>
+    No podemos tener más ganas de veros el 3 de octubre en Alicante y compartir todo esto juntos.
   </p>
 </section>
 
@@ -1094,6 +1132,7 @@
     <h2 class="section-title">03 · 10 · 2026</h2>
     <div class="ornament">
       <span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
       <span></span>
     </div>
   </div>
@@ -1101,43 +1140,35 @@
   <div class="timeline">
     <div class="timeline-item">
       <div class="timeline-content">
-        <span class="timeline-time">17:00</span>
-        <p class="timeline-event">Ceremonia religiosa</p>
-        <p class="timeline-desc">Monasterio de la Santa Faz</p>
-      </div>
-      <div class="timeline-dot"></div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-content">
         <span class="timeline-time">18:30</span>
         <p class="timeline-event">Cóctel</p>
-        <p class="timeline-desc">Finca Torre Juana</p>
+        <p class="timeline-desc">Un margarita por favor</p>
       </div>
+      <div class="timeline-dot"></div>
     </div>
     <div class="timeline-item">
+      <div class="timeline-dot"></div>
       <div class="timeline-content">
         <span class="timeline-time">21:00</span>
         <p class="timeline-event">Cena</p>
-        <p class="timeline-desc">Una cena para recordar</p>
+        <p class="timeline-desc">Como sabéis, lo que más nos gusta</p>
       </div>
-      <div class="timeline-dot"></div>
     </div>
     <div class="timeline-item">
-      <div class="timeline-dot"></div>
       <div class="timeline-content">
         <span class="timeline-time">22:30</span>
         <p class="timeline-event">Fiesta</p>
-        <p class="timeline-desc">Que no pare la música</p>
+        <p class="timeline-desc">Unos perreitos hasta el suelo</p>
       </div>
+      <div class="timeline-dot"></div>
     </div>
     <div class="timeline-item">
+      <div class="timeline-dot"></div>
       <div class="timeline-content">
         <span class="timeline-time">04:00</span>
         <p class="timeline-event">Recena</p>
-        <p class="timeline-desc">Para reponer fuerzas</p>
+        <p class="timeline-desc">A revivir</p>
       </div>
-      <div class="timeline-dot"></div>
     </div>
   </div>
 </section>
@@ -1160,7 +1191,11 @@
       <div class="venue-content">
         <h3>Santa Faz</h3>
         <p class="venue-subtitle">Ceremonia religiosa · 17:00</p>
-        <p>Un monasterio cargado de historia y devoción a las afueras de Alicante, con su característica cúpula azul y su fachada barroca, será el escenario de nuestra ceremonia. Un lugar especial donde nos daremos el "sí, quiero".</p>
+        <p>El monasterio de Santa Faz siempre ha sido un lugar muy especial para nosotros y para la familia de Pau. Creciendo viniendo aquí, peregrinando y pidiendo por todo lo importante de la vida. Y a partir de ahora, lo continuaremos nosotros.</p>
+        <p>Por eso no imaginábamos dar el "sí, quiero" en otro sitio. Sabemos que será un momento muy emocionante y que, de alguna manera, también sentiremos cerca a quienes nos han acompañado siempre.</p>
+        <figure class="memory-photo">
+          <img src="images/abus-pau.jpeg" alt="Los abuelos de Pau en el Monasterio de la Santa Faz" loading="lazy" />
+        </figure>
         <div class="venue-detail">
           <strong>Dirección</strong>
           <span>Plaza Monasterio Santa Faz, 03559 Alicante</span>
@@ -1192,7 +1227,9 @@
       <div class="venue-content">
         <h3>Torre Juana</h3>
         <p class="venue-subtitle">Cóctel y cena · desde las 18:30</p>
-        <p>Una finca histórica rodeada de jardines y con todo el encanto mediterráneo, donde celebraremos el cóctel, la cena y el baile hasta el amanecer. El lugar perfecto para disfrutar de una noche inolvidable bajo el cielo de Alicante.</p>
+        <p>Hay sitios que, sin saber por qué, se sienten como parte de la historia antes incluso de que pase nada. Con Torre Juana nos pasó eso.</p>
+        <p>Antes de saber que nos íbamos a casar, ya nos enviábamos fotos de la finca como diciendo "algún día…". Y al final, ese "algún día" ha llegado.</p>
+        <p>Torre Juana, patrimonio de Alicante, con su ermita, su historia y ese aire tan especial, es el sitio donde todo encaja para nosotros.</p>
         <div class="venue-detail">
           <strong>Dirección</strong>
           <span>Finca Torre Juana, Alicante</span>
@@ -1279,7 +1316,9 @@
 
     <div class="bus-content">
       <p class="bus-intro">
-        Para vuestra comodidad, hemos organizado un servicio de autobuses gratuito con salida desde el centro de Alicante, parada en los hoteles de Playa San Juan, y destino al Monasterio de la Santa Faz. Tras la ceremonia, traslado a la Finca Torre Juana. La vuelta seguirá la misma ruta a la inversa, con paradas en los hoteles y centro de Alicante.
+        Como conseguir un taxi o un Uber en Alicante es prácticamente un deporte de riesgo… hemos preferido ponéroslo fácil.<br>
+        Habrá autobuses desde el centro de Alicante y los hoteles de Playa San Juan hasta la Santa Faz y, después, a Torre Juana.<br>
+        Y sí, también vuelta al final de la fiesta, para que nadie tenga que sufrir con los tacones.
       </p>
 
       <div class="bus-routes">
@@ -1288,6 +1327,10 @@
           <div class="bus-route-detail">
             <span class="label">Salida</span>
             <span class="value">Calle Óscar Esplá 37, junto a Consellería</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Hora</span>
+            <span class="value">15:45 h</span>
           </div>
           <div class="bus-route-detail">
             <span class="label">Parada</span>
@@ -1343,7 +1386,9 @@
         <span></span>
       </div>
       <p style="max-width: 540px; margin: 1.5rem auto 0; color: var(--ink-soft); font-style: italic;">
-        Por favor, confirma tu asistencia antes del <strong style="color: var(--accent-deep); font-style: normal;">15 de agosto de 2026</strong>.
+        Solo falta saber una cosa: ¿vienes?<br>
+        Confirma antes del <strong style="color: var(--accent-deep); font-style: normal;">15 de agosto de 2026</strong>.<br>
+        Nos hace muchísima ilusión celebrarlo contigo.
       </p>
     </div>
 
@@ -1464,13 +1509,14 @@
       <h2 class="section-title">Regalo</h2>
       <div class="ornament">
         <span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 21 4 21 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="21" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
         <span></span>
       </div>
     </div>
 
     <div class="gift-card">
       <p class="gift-main">¡El mejor regalo es compartir este día con vosotros!</p>
-      <p class="gift-sub">Si, además, alguien desea apoyarnos en esta nueva etapa, aquí os compartimos la información:</p>
+      <p class="gift-sub">Si, además, quieres apoyarnos en esta nueva etapa que cogemos con muchísima ilusión, aquí compartimos la información:</p>
       <div class="gift-iban">
         <span class="gift-iban-label">Número de cuenta</span>
         <div class="gift-iban-row">
