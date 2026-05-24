@@ -613,6 +613,16 @@
     margin-bottom: 1rem;
     font-weight: 400;
   }
+  .bus-route h4 .arrow {
+    /* Forzar presentación como TEXTO (no emoji) en todos los dispositivos */
+    font-family: "Times New Roman", serif;
+    font-variant-emoji: text;
+    -webkit-font-variant-emoji: text;
+    text-rendering: optimizeLegibility;
+    color: var(--accent);
+    display: inline-block;
+    margin-right: 0.2em;
+  }
 
   .bus-route-detail {
     display: flex;
@@ -1323,14 +1333,14 @@
 
       <div class="bus-routes">
         <div class="bus-route">
-          <h4>↗ Ida</h4>
+          <h4><span class="arrow">↗︎</span> Ida</h4>
           <div class="bus-route-detail">
             <span class="label">Salida</span>
             <span class="value">Calle Óscar Esplá 37, junto a Consellería</span>
           </div>
           <div class="bus-route-detail">
             <span class="label">Hora</span>
-            <span class="value">15:45 h</span>
+            <span class="value">16:00 h</span>
           </div>
           <div class="bus-route-detail">
             <span class="label">Parada</span>
@@ -1347,7 +1357,7 @@
         </div>
 
         <div class="bus-route">
-          <h4>↙ Vuelta</h4>
+          <h4><span class="arrow">↙︎</span> Vuelta</h4>
           <div class="bus-route-detail">
             <span class="label">Salida</span>
             <span class="value">Finca Torre Juana</span>
@@ -1536,7 +1546,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="monogram">P &amp; J</div>
-  <p class="footer-date">03 · Octubre · 2026 · Alicante</p>
+  <p class="footer-date">03 · Octubre · 2026<br>Alicante</p>
   <p class="footer-message">
     Gracias por formar parte de nuestra historia. Vuestra presencia es el mejor regalo que podríamos pedir.
   </p>
