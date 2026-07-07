@@ -1,7 +1,1719 @@
-[build]
-  publish = "."
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="light" />
+<meta name="theme-color" content="#f5f1ea" />
+<meta name="supported-color-schemes" content="light" />
+<meta name="format-detection" content="telephone=no,date=no,address=no,email=no" />
 
-[[headers]]
-  for = "/images/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+<!-- FAVICONS -->
+<link rel="icon" type="image/x-icon" href="favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="android-chrome-512.png" />
+
+<!-- OPEN GRAPH (WhatsApp, redes sociales) -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Paula & Javi · 03.10.2026" />
+<meta property="og:description" content="Nos casamos el 3 de octubre en Alicante. Toda la información de la boda aquí." />
+<meta property="og:image" content="https://paulayjaviboda.netlify.app/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:url" content="https://paulayjaviboda.netlify.app/" />
+<meta property="og:locale" content="es_ES" />
+
+<!-- TWITTER CARDS -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Paula & Javi · 03.10.2026" />
+<meta name="twitter:description" content="Nos casamos el 3 de octubre en Alicante." />
+<meta name="twitter:image" content="https://paulayjaviboda.netlify.app/og-image.jpg" />
+
+<!-- DESCRIPCIÓN GENERAL -->
+<meta name="description" content="Web de invitación de boda de Paula y Javi. 3 de octubre de 2026, Alicante." />
+<title>Paula & Javi · 03.10.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Italiana&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    color-scheme: light only;
+    --bg: #f5f1ea;
+    --bg-deep: #ebe4d6;
+    --ink: #2a2418;
+    --ink-soft: #5a4f3d;
+    --accent: #8b6f47;
+    --accent-deep: #6b5235;
+    --line: #c8b896;
+    --cream: #faf7f0;
+    --shadow: rgba(42, 36, 24, 0.08);
+    --font-display: 'Italiana', serif;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Outfit', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-serif);
+    background: #f5f1ea;
+    color: #2a2418;
+    font-size: 18px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Forzar fondo claro en secciones que heredan del body */
+  section#dia-boda,
+  section#hoteles {
+    background: #f5f1ea;
+    color: #2a2418;
+  }
+
+  /* Forzar legibilidad de los textos principales en TODAS las secciones,
+     por si el navegador intenta forzar modo oscuro */
+  .section-title,
+  .timeline-time,
+  .timeline-event,
+  .hotel-name,
+  .venue-content h3 {
+    color: #2a2418 !important;
+  }
+  .section-eyebrow,
+  .timeline-desc,
+  .hotel-desc,
+  .hotel-location,
+  .venue-subtitle,
+  .intro-text {
+    color: #5a4f3d !important;
+  }
+  .hotel-card {
+    background: #faf7f0 !important;
+  }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 3rem;
+    background: rgba(245, 241, 234, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 184, 150, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 0.3em;
+    color: var(--accent-deep);
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+  nav ul a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 300;
+    position: relative;
+    padding: 0.3rem 0;
+    transition: color 0.3s ease;
+  }
+  nav ul a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--accent);
+    transition: width 0.3s ease;
+  }
+  nav ul a:hover { color: var(--accent-deep); }
+  nav ul a:hover::after { width: 100%; }
+
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    overflow: hidden;
+    background: var(--bg);
+  }
+
+  .hero-photo {
+    height: 100vh;
+    background-image: url('images/nosotros.jpeg');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(0.2) contrast(1.05);
+    position: relative;
+  }
+  .hero-photo::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(245, 241, 234, 0.3));
+  }
+
+  .hero-content {
+    padding: 5rem 3rem 3rem;
+    text-align: center;
+    animation: fadeUp 1.4s ease;
+    position: relative;
+  }
+
+  .hero-content::before,
+  .hero-content::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 35px;
+    background: var(--line);
+  }
+  .hero-content::before { top: 25px; }
+  .hero-content::after { bottom: 25px; }
+
+  .hero .preamble {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.55em;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 1.3rem;
+    color: var(--accent);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 5vw, 4.6rem);
+    line-height: 1;
+    letter-spacing: 0.05em;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .hero .amp {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.8rem, 3.6vw, 3rem);
+    color: var(--accent);
+    display: block;
+    margin: 0.2rem 0;
+    font-weight: 300;
+  }
+
+  .hero .date-line {
+    margin-top: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: var(--ink-soft);
+  }
+
+  .hero .date-line span.divider {
+    width: 22px;
+    height: 1px;
+    background: var(--line);
+  }
+
+  .hero .location-line {
+    margin-top: 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    letter-spacing: 0.3em;
+    color: var(--accent-deep);
+  }
+
+  /* ---------- COUNTDOWN ---------- */
+  .countdown {
+    display: flex;
+    gap: 0.9rem;
+    justify-content: center;
+    margin-top: 1.6rem;
+  }
+
+  .countdown-item {
+    text-align: center;
+    min-width: 55px;
+    padding: 0.6rem 0.4rem;
+    border: 1px solid var(--line);
+    background: rgba(250, 247, 240, 0.6);
+  }
+
+  .countdown-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.4vw, 1.8rem);
+    color: var(--accent-deep);
+    line-height: 1;
+    display: block;
+  }
+
+  .countdown-label {
+    font-family: var(--font-sans);
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section {
+    padding: 7rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4.5rem;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    font-weight: 300;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    color: var(--ink);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.8rem auto;
+    gap: 1rem;
+  }
+  .ornament span {
+    width: 60px;
+    height: 1px;
+    background: var(--line);
+  }
+  .ornament svg {
+    width: 14px;
+    height: 14px;
+    color: var(--accent);
+  }
+
+  /* ---------- INTRO ---------- */
+  .intro {
+    background: var(--cream);
+  }
+  .intro-text {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ---------- WEDDING DAY ---------- */
+  .timeline {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--line) 10%, var(--line) 90%, transparent);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 2rem;
+    align-items: center;
+    padding: 2rem 0;
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content {
+    text-align: right;
+    grid-column: 1;
+  }
+  .timeline-item:nth-child(even) .timeline-content {
+    text-align: left;
+    grid-column: 3;
+  }
+
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    grid-column: 2;
+    box-shadow: 0 0 0 6px var(--bg);
+    z-index: 1;
+  }
+
+  .timeline-time {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent-deep);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-event {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .timeline-desc {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* ---------- VENUE ---------- */
+  .venue {
+    background: var(--bg-deep);
+  }
+
+  .venue-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .venue-grid.reverse {
+    direction: rtl;
+  }
+  .venue-grid.reverse > * {
+    direction: ltr;
+  }
+
+  .venue-image {
+    aspect-ratio: 4/5;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    box-shadow: 0 20px 60px var(--shadow);
+  }
+  .venue-image::after {
+    content: '';
+    position: absolute;
+    inset: 15px;
+    border: 1px solid rgba(250, 247, 240, 0.5);
+    pointer-events: none;
+  }
+
+  .venue-content h3 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+    font-weight: 400;
+  }
+  .venue-content .venue-subtitle {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+  .venue-content p {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+  }
+  .venue-detail {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .venue-detail strong {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 400;
+  }
+  .venue-detail span {
+    font-size: 1.05rem;
+    color: var(--ink);
+  }
+  .venue-detail a {
+    color: var(--accent-deep);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+    transition: border-color 0.3s ease;
+  }
+  .venue-detail a:hover { border-color: var(--accent-deep); }
+
+  /* ---------- HOTELS ---------- */
+  .hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .hotel-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(200, 184, 150, 0.4);
+    transition: all 0.4s ease;
+    position: relative;
+  }
+  .hotel-card::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px solid transparent;
+    transition: border-color 0.4s ease;
+    pointer-events: none;
+  }
+  .hotel-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px var(--shadow);
+  }
+  .hotel-card:hover::before {
+    border-color: var(--line);
+  }
+
+  .hotel-stars {
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .hotel-name {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+
+  .hotel-location {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+  }
+
+  .hotel-desc {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    font-style: italic;
+  }
+
+  .hotel-price {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--accent-deep);
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .hotel-price small {
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    display: block;
+    margin-top: 0.3rem;
+    font-weight: 300;
+  }
+
+  /* ---------- BUS ---------- */
+  .bus {
+    background: var(--cream);
+  }
+
+  .bus-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .bus-intro {
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .bus-routes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .bus-route {
+    border: 1px solid var(--line);
+    padding: 2rem;
+    background: var(--bg);
+    text-align: left;
+  }
+
+  .bus-route h4 {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .bus-route h4 .arrow {
+    /* Forzar presentación como TEXTO (no emoji) en todos los dispositivos */
+    font-family: "Times New Roman", serif;
+    font-variant-emoji: text;
+    -webkit-font-variant-emoji: text;
+    text-rendering: optimizeLegibility;
+    color: var(--accent);
+    display: inline-block;
+    margin-right: 0.2em;
+  }
+
+  .bus-route-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid rgba(200, 184, 150, 0.4);
+    font-size: 0.95rem;
+  }
+  .bus-route-detail:last-child { border-bottom: none; }
+
+  .bus-route-detail .label {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .bus-route-detail .value {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ---------- RSVP FORM ---------- */
+  .rsvp {
+    background: var(--bg-deep);
+    padding: 7rem 2rem;
+  }
+
+  .rsvp-container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .rsvp-form {
+    background: var(--cream);
+    padding: 4rem 3rem;
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .rsvp-form::before {
+    content: '';
+    position: absolute;
+    inset: 12px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  .form-group {
+    margin-bottom: 1.8rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+    margin-bottom: 0.6rem;
+    font-weight: 400;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    color: var(--ink);
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .radio-group, .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .radio-option, .checkbox-option {
+    flex: 1;
+    min-width: 130px;
+    position: relative;
+  }
+
+  .radio-option input, .checkbox-option input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .radio-option label, .checkbox-option label {
+    display: block;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    text-transform: none;
+    margin: 0;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .radio-option input:checked + label,
+  .checkbox-option input:checked + label {
+    background: var(--accent-deep);
+    color: var(--cream);
+    border-color: var(--accent-deep);
+    font-style: normal;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 1.1rem 2rem;
+    background: var(--ink);
+    color: var(--cream);
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    transition: background 0.3s ease;
+    font-weight: 300;
+  }
+
+  .submit-btn:hover {
+    background: var(--accent-deep);
+  }
+
+  .success-message {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: var(--cream);
+    border: 1px solid var(--accent);
+  }
+
+  .success-message.show { display: block; }
+
+  .success-message h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--accent-deep);
+    margin-bottom: 1rem;
+  }
+
+  .success-message p {
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 4rem 2rem 2rem;
+    text-align: center;
+  }
+
+  footer .monogram {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+    color: var(--line);
+  }
+
+  footer .footer-date {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+
+  footer .footer-message {
+    font-style: italic;
+    color: rgba(250, 247, 240, 0.7);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0; right: 0;
+      flex-direction: column;
+      background: var(--cream);
+      padding: 2rem;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--line);
+    }
+    nav ul.open { display: flex; }
+    .menu-toggle { display: block; }
+
+    section { padding: 5rem 1.5rem; }
+
+    /* Hero apilado en móvil */
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-rows: 50vh auto;
+      min-height: 100vh;
+    }
+    .hero-photo { height: 45vh; margin-top: 60px; }
+    .hero-content { padding: 2.5rem 1.5rem 3rem; }
+    .hero-content::before, .hero-content::after { display: none; }
+
+    .countdown { gap: 0.7rem; }
+    .countdown-item { min-width: 55px; padding: 0.8rem 0.3rem; }
+
+    .venue-grid {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    .venue-grid.reverse { direction: ltr; }
+
+    .timeline { padding-left: 0; }
+    .timeline::before { left: 12px; }
+    .timeline-item {
+      grid-template-columns: 32px 1fr !important;
+      gap: 1rem !important;
+      align-items: start !important;
+      padding: 1.5rem 0 !important;
+    }
+    /* Sobreescribir las reglas de odd/even del desktop */
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+      grid-column: 2 !important;
+      grid-row: 1 !important;
+      text-align: left !important;
+    }
+    .timeline-item .timeline-dot {
+      grid-column: 1 !important;
+      grid-row: 1 !important;
+      justify-self: center;
+      margin-top: 0.6rem;
+    }
+    .timeline-time {
+      font-size: 1.7rem;
+    }
+
+    .bus-routes { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .rsvp-form { padding: 2.5rem 1.5rem; }
+
+    .hero .date-line {
+      flex-direction: column;
+      gap: 0.8rem;
+      font-size: 0.75rem;
+    }
+    .hero .date-line span.divider { width: 40px; }
+  }
+
+  /* ---------- REGALO ---------- */
+  #regalo {
+    padding: 5rem 2rem;
+  }
+  .gift-card {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 3rem 2.5rem;
+    text-align: center;
+    position: relative;
+  }
+  .gift-card::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+  .gift-main {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
+    color: var(--accent-deep) !important;
+    line-height: 1.4;
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+  }
+  .gift-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--ink-soft) !important;
+    line-height: 1.7;
+    margin-bottom: 2.2rem;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .gift-iban {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .gift-iban-label {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 300;
+  }
+  .gift-iban-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 0.3rem;
+  }
+  .gift-iban-number,
+  .gift-iban-number a {
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    letter-spacing: 0.15em;
+    color: var(--ink) !important;
+    word-break: keep-all;
+    text-decoration: none !important;
+    -webkit-text-decoration: none !important;
+    background: transparent !important;
+    pointer-events: none;
+  }
+  .gift-copy-btn {
+    background: transparent;
+    border: none;
+    padding: 0.35rem;
+    margin: 0;
+    cursor: pointer;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: color 0.25s ease, background 0.25s ease, transform 0.1s ease;
+    line-height: 0;
+  }
+  .gift-copy-btn svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  .gift-copy-btn:hover {
+    color: var(--accent-deep);
+    background: rgba(139, 111, 71, 0.08);
+  }
+  .gift-copy-btn:active {
+    transform: scale(0.92);
+  }
+  .gift-copy-btn.copied {
+    color: var(--accent-deep);
+  }
+  .gift-copy-btn .copied-check {
+    display: none;
+  }
+  @media (max-width: 600px) {
+    .gift-iban-number {
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+    }
+    .gift-iban-row {
+      gap: 0.6rem;
+    }
+    .gift-card {
+      padding: 2rem 1.2rem;
+    }
+  }
+
+  /* ---------- FOTO MEMORIA (abuelos Santa Faz) ---------- */
+  .memory-photo {
+    margin: 1.8rem 0 0;
+    max-width: 230px;
+  }
+  .memory-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--line);
+    padding: 6px;
+    background: var(--cream);
+    box-shadow: 0 6px 18px rgba(42, 36, 24, 0.08);
+    border-radius: 2px;
+  }
+  .memory-photo figcaption {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin-top: 0.65rem;
+    line-height: 1.4;
+    text-align: left;
+    padding-left: 6px;
+  }
+  @media (max-width: 900px) {
+    .memory-photo {
+      max-width: 200px;
+      margin: 1.5rem auto 0;
+    }
+    .memory-photo figcaption {
+      text-align: center;
+      padding-left: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">P &amp; J</div>
+  <button class="menu-toggle" onclick="document.querySelector('nav ul').classList.toggle('open')">Menú</button>
+  <ul>
+    <li><a href="#nuestra-historia">Nosotros</a></li>
+    <li><a href="#dia-boda">El día</a></li>
+    <li><a href="#ceremonia">Ceremonia</a></li>
+    <li><a href="#cena">Cena</a></li>
+    <li><a href="#hoteles">Hoteles</a></li>
+    <li><a href="#autobuses">Autobuses</a></li>
+    <li><a href="#rsvp">Confirmar</a></li>
+    <li><a href="#regalo">Regalo</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" style="padding: 0; max-width: none;">
+  <div class="hero-photo"></div>
+  <div class="hero-content">
+    <p class="preamble">Save the Date</p>
+    <h1>
+      Paula
+      <span class="amp">&amp;</span>
+      Javi
+    </h1>
+    <div class="date-line">
+      <span class="divider"></span>
+      <span>03 · Octubre · 2026</span>
+      <span class="divider"></span>
+    </div>
+    <p class="location-line">Alicante</p>
+    <div class="countdown" id="countdown">
+      <div class="countdown-item">
+        <span class="countdown-number" id="days">--</span>
+        <span class="countdown-label">Días</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="hours">--</span>
+        <span class="countdown-label">Horas</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="minutes">--</span>
+        <span class="countdown-label">Min</span>
+      </div>
+      <div class="countdown-item">
+        <span class="countdown-number" id="seconds">--</span>
+        <span class="countdown-label">Seg</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="intro" id="nuestra-historia" style="padding: 4.5rem 2rem;">
+  <div class="section-header" style="margin-bottom: 2rem;">
+    <p class="section-eyebrow">Nuestra historia</p>
+    <h2 class="section-title">Bienvenidos</h2>
+    <div class="ornament">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4c-2.5 0-4.5 1-5.5 2.5.7-.3 1.5-.4 2.3-.3-1.4.6-2.5 1.7-2.8 3.3.9-.6 1.9-.8 2.9-.8-1.6 1-2.5 2.7-2.5 4.5.8-.7 1.8-1.1 2.8-1.2-1 1.4-1.4 3-1.2 4.5 1-.6 1.9-1.5 2.6-2.5l-.6 7h2.2l-.6-7c.7 1 1.6 1.9 2.6 2.5.2-1.5-.2-3.1-1.2-4.5 1 .1 2 .5 2.8 1.2 0-1.8-.9-3.5-2.5-4.5 1 0 2 .2 2.9.8-.3-1.6-1.4-2.7-2.8-3.3.8-.1 1.6 0 2.3.3C16.5 5 14.5 4 12 4z"/></svg>
+      <span></span>
+    </div>
+  </div>
+  <p class="intro-text">
+    Qué suerte poder celebrar un día tan especial con la gente que más queremos.<br>
+    No podemos tener más ganas de veros el 3 de octubre en Alicante y compartir todo esto juntos.
+  </p>
+</section>
+
+<!-- WEDDING DAY -->
+<section id="dia-boda">
+  <div class="section-header">
+    <p class="section-eyebrow">El gran día</p>
+    <h2 class="section-title">03 · 10 · 2026</h2>
+    <div class="ornament">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <span class="timeline-time">17:00</span>
+        <p class="timeline-event">Ceremonia religiosa</p>
+        <p class="timeline-desc">Monasterio de la Santa Faz</p>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <span class="timeline-time">18:30</span>
+        <p class="timeline-event">Cóctel</p>
+        <p class="timeline-desc">Un margarita por favor</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <span class="timeline-time">21:00</span>
+        <p class="timeline-event">Cena</p>
+        <p class="timeline-desc">Como sabéis, lo que más nos gusta</p>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-content">
+        <span class="timeline-time">22:30</span>
+        <p class="timeline-event">Fiesta</p>
+        <p class="timeline-desc">Unos perreitos hasta el suelo</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-content">
+        <span class="timeline-time">04:00</span>
+        <p class="timeline-event">Recena</p>
+        <p class="timeline-desc">A revivir</p>
+      </div>
+      <div class="timeline-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CEREMONIA -->
+<section class="venue" id="ceremonia" style="max-width: none;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-header">
+      <p class="section-eyebrow">La ceremonia</p>
+      <h2 class="section-title">Monasterio de la Santa Faz</h2>
+      <div class="ornament">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="venue-grid">
+      <div class="venue-image" style="background-image: url('images/santa-faz.png');"></div>
+      <div class="venue-content">
+        <h3>Santa Faz</h3>
+        <p class="venue-subtitle">Ceremonia religiosa · 17:00</p>
+        <p>El monasterio de Santa Faz siempre ha sido un lugar muy especial para nosotros yendo a dar gracias y pedir por todo lo importante de la vida.</p>
+        <p>Por eso no imaginábamos dar el "sí, quiero" en otro sitio. Sabemos que será un momento muy emocionante y que, de alguna manera, también sentiremos cerca a quienes nos han acompañado siempre.</p>
+        <figure class="memory-photo">
+          <img src="images/abus-pau.jpeg" alt="Los abuelos de Pau en el Monasterio de la Santa Faz" loading="lazy" />
+        </figure>
+        <div class="venue-detail">
+          <strong>Dirección</strong>
+          <span>Plaza Monasterio Santa Faz, 03559 Alicante</span>
+        </div>
+        <div class="venue-detail">
+          <strong>Cómo llegar</strong>
+          <span><a href="https://maps.google.com/?q=Monasterio+Santa+Faz+Alicante" target="_blank" rel="noopener">Ver en Google Maps →</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENA -->
+<section id="cena" style="background: var(--cream); max-width: none;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+    <div class="section-header">
+      <p class="section-eyebrow">La cena</p>
+      <h2 class="section-title">Finca Torre Juana</h2>
+      <div class="ornament">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 21V9l9-6 9 6v12h-6v-7h-6v7H3z"/></svg>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="venue-grid">
+      <div class="venue-image" style="background-image: url('images/torre-juana.jpeg');"></div>
+      <div class="venue-content">
+        <h3>Torre Juana</h3>
+        <p class="venue-subtitle">Cóctel y cena · desde las 18:30</p>
+        <p>Hay sitios que, sin saber por qué, se sienten como parte de la historia antes incluso de que pase nada. Con Torre Juana nos pasó eso.</p>
+        <p>Antes de saber que nos íbamos a casar, ya nos enviábamos fotos de la finca como diciendo "algún día…". Y al final, ese "algún día" ha llegado.</p>
+        <p>Torre Juana, patrimonio de Alicante, con su ermita, su historia y ese aire tan especial, es el sitio donde todo encaja para nosotros.</p>
+        <div class="venue-detail">
+          <strong>Dirección</strong>
+          <span>Finca Torre Juana, Alicante</span>
+        </div>
+        <div class="venue-detail">
+          <strong>Cómo llegar</strong>
+          <span><a href="https://maps.google.com/?q=Finca+Torre+Juana+Alicante" target="_blank" rel="noopener">Ver en Google Maps →</a></span>
+        </div>
+        <div class="venue-detail">
+          <strong>Desde el Monasterio</strong>
+          <span>Aprox. 5 minutos en coche</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section id="hoteles">
+  <div class="section-header">
+    <p class="section-eyebrow">Alojamiento</p>
+    <h2 class="section-title">Dónde quedarse</h2>
+    <div class="ornament">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 14c1.66 0 3-1.34 3-3S8.66 8 7 8s-3 1.34-3 3 1.34 3 3 3zm12-7h-8v8H3V5H1v15h2v-3h18v3h2v-9c0-2.21-1.79-4-4-4z"/></svg>
+      <span></span>
+    </div>
+    <p style="max-width: 600px; margin: 1.5rem auto 0; color: var(--ink-soft); font-style: italic;">
+      Os recomendamos estas opciones de alojamiento, todas ellas en la zona de la Playa de San Juan, muy cerca del lugar de celebración.
+    </p>
+  </div>
+
+  <div class="hotels-grid">
+    <div class="hotel-card">
+      <h3 class="hotel-name">Hotel Golf Alicante</h3>
+      <p class="hotel-location">Playa San Juan</p>
+      <p class="hotel-desc">Un clásico junto al campo de golf, con piscina y muy cerca de la playa de San Juan. Ideal para combinar la boda con unos días de descanso.</p>
+      <div class="hotel-price">
+        <a href="https://www.google.com/search?q=Hotel+Golf+Alicante" target="_blank" rel="noopener" style="color: var(--accent-deep); text-decoration: none; border-bottom: 1px solid var(--line); font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;">Ver detalles →</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <h3 class="hotel-name">Hotel Torre San Juan</h3>
+      <p class="hotel-location">Playa San Juan</p>
+      <p class="hotel-desc">Hotel acogedor en plena Playa San Juan, a pocos minutos del centro y bien comunicado con la zona de la celebración.</p>
+      <div class="hotel-price">
+        <a href="https://www.google.com/search?q=Hotel+Torre+San+Juan+Alicante" target="_blank" rel="noopener" style="color: var(--accent-deep); text-decoration: none; border-bottom: 1px solid var(--line); font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;">Ver detalles →</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <h3 class="hotel-name">Hotel Port Alicante</h3>
+      <p class="hotel-location">Playa San Juan</p>
+      <p class="hotel-desc">Frente al mar, con vistas a la playa y una oferta gastronómica destacada. Una opción muy cómoda para alojarse durante el fin de semana.</p>
+      <div class="hotel-price">
+        <a href="https://www.google.com/search?q=Hotel+Port+Alicante" target="_blank" rel="noopener" style="color: var(--accent-deep); text-decoration: none; border-bottom: 1px solid var(--line); font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;">Ver detalles →</a>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <h3 class="hotel-name">Hotel Almirante</h3>
+      <p class="hotel-location">Playa San Juan</p>
+      <p class="hotel-desc">Hotel de referencia en la zona de la Playa de San Juan, con terraza, piscina y ambiente tranquilo. Una elección segura y bien ubicada.</p>
+      <div class="hotel-price">
+        <a href="https://www.google.com/search?q=Hotel+Almirante+Alicante" target="_blank" rel="noopener" style="color: var(--accent-deep); text-decoration: none; border-bottom: 1px solid var(--line); font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;">Ver detalles →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUS -->
+<section class="bus" id="autobuses" style="max-width: none;">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <div class="section-header">
+      <p class="section-eyebrow">Transporte</p>
+      <h2 class="section-title">Autobuses</h2>
+      <div class="ornament">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 16c0 .88.39 1.67 1 2.22V20a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h8v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm9 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm1.5-6H6V6h12v5z"/></svg>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="bus-content">
+      <p class="bus-intro">
+        Como conseguir un taxi o un Uber en Alicante es prácticamente un deporte de riesgo… hemos preferido ponéroslo fácil.<br>
+        Habrá autobuses desde el centro de Alicante y los hoteles de Playa San Juan hasta la Santa Faz y, después, a Torre Juana.<br>
+        Y sí, también vuelta al final de la fiesta, para que nadie tenga que sufrir con los tacones.
+      </p>
+
+      <div class="bus-routes">
+        <div class="bus-route">
+          <h4><span class="arrow">↗︎</span> Ida</h4>
+          <div class="bus-route-detail">
+            <span class="label">Salida</span>
+            <span class="value">Calle Óscar Esplá 37, junto a Consellería</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Hora</span>
+            <span class="value">16:00 h</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Parada</span>
+            <span class="value">Hoteles Playa San Juan</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Destino</span>
+            <span class="value">Monasterio Santa Faz</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Tras la ceremonia</span>
+            <span class="value">Traslado a Torre Juana</span>
+          </div>
+        </div>
+
+        <div class="bus-route">
+          <h4><span class="arrow">↙︎</span> Vuelta</h4>
+          <div class="bus-route-detail">
+            <span class="label">Salida</span>
+            <span class="value">Finca Torre Juana</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Primera vuelta</span>
+            <span class="value">01:00 h</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Segunda vuelta</span>
+            <span class="value">04:00 h</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Parada y destino</span>
+            <span class="value">Hoteles Playa San Juan y Centro de Alicante</span>
+          </div>
+        </div>
+      </div>
+
+      <p style="margin-top: 2.5rem; font-size: 0.95rem; color: var(--ink-soft); font-style: italic;">
+        Por favor, confirmad vuestro uso del autobús en el formulario de abajo para que podamos organizar las plazas.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP FORM -->
+<section class="rsvp" id="rsvp" style="max-width: none;">
+  <div class="rsvp-container">
+    <div class="section-header">
+      <p class="section-eyebrow">Confirmación</p>
+      <h2 class="section-title">¿Vienes?</h2>
+      <div class="ornament">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <span></span>
+      </div>
+      <p style="max-width: 540px; margin: 1.5rem auto 0; color: var(--ink-soft); font-style: italic;">
+        Solo falta saber una cosa: ¿vienes?<br>
+        Confirma antes del <strong style="color: var(--accent-deep); font-style: normal;">15 de agosto de 2026</strong>.<br>
+        Nos hace muchísima ilusión celebrarlo contigo.
+      </p>
+    </div>
+
+    <form class="rsvp-form" id="rsvpForm" onsubmit="return handleSubmit(event)">
+
+      <!-- 
+        ===========================================================================
+        IMPORTANTE: configura los IDs de Google Forms aquí.
+        Cambia los "entry.XXXXX" por los IDs reales de cada campo de tu Google Form.
+        Encontrarás cómo obtenerlos en las instrucciones que te pasó Claude.
+        ===========================================================================
+      -->
+
+      <div class="form-group">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="entry.1572207372" required />
+      </div>
+
+      <div class="form-group">
+        <label>¿Podrás acompañarnos?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="si" name="entry.679600443" value="Sí, allí estaré" required />
+            <label for="si">Sí, allí estaré</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="no" name="entry.679600443" value="No podré ir" />
+            <label for="no">No podré ir</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="acompanantes">Número de acompañantes (sin contarte a ti)</label>
+        <select id="acompanantes" name="entry.1901194817">
+          <option value="0 - voy solo/a">0 — Voy solo/a</option>
+          <option value="1 acompañante">1 acompañante</option>
+          <option value="2 acompañantes">2 acompañantes</option>
+          <option value="3 acompañantes">3 acompañantes</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>¿Usarás el autobús?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="bus-ida-vuelta" name="entry.82099182" value="Ida y vuelta" />
+            <label for="bus-ida-vuelta">Ida y vuelta</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="bus-solo-ida" name="entry.82099182" value="Solo ida" />
+            <label for="bus-solo-ida">Solo ida</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="bus-solo-vuelta" name="entry.82099182" value="Solo vuelta" />
+            <label for="bus-solo-vuelta">Solo vuelta</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="bus-no" name="entry.82099182" value="No, voy por mi cuenta" />
+            <label for="bus-no">No, voy por mi cuenta</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Intolerancias y alergias alimentarias</label>
+        <div class="checkbox-group">
+          <div class="checkbox-option">
+            <input type="checkbox" id="gluten" name="entry.1280234489" value="Gluten" />
+            <label for="gluten">Gluten</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="lactosa" name="entry.1280234489" value="Lactosa" />
+            <label for="lactosa">Lactosa</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="frutos-secos" name="entry.1280234489" value="Frutos secos" />
+            <label for="frutos-secos">Frutos secos</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="marisco" name="entry.1280234489" value="Marisco" />
+            <label for="marisco">Marisco</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="huevo" name="entry.1280234489" value="Huevo" />
+            <label for="huevo">Huevo</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="vegetariano" name="entry.1280234489" value="Vegetariano" />
+            <label for="vegetariano">Vegetariano</label>
+          </div>
+          <div class="checkbox-option">
+            <input type="checkbox" id="vegano" name="entry.1280234489" value="Vegano" />
+            <label for="vegano">Vegano</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="otras-intolerancias">Otras intolerancias o comentarios sobre la dieta</label>
+        <textarea id="otras-intolerancias" name="entry.1357998508" placeholder="Cuéntanos cualquier detalle adicional sobre alergias, intolerancias o preferencias..."></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">Enviar confirmación</button>
+    </form>
+
+    <div class="success-message" id="successMessage">
+      <h3>¡Gracias!</h3>
+      <p>Hemos recibido tu confirmación. Nos hace muchísima ilusión que vayas a acompañarnos. Te esperamos el 3 de octubre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REGALO -->
+<section id="regalo" style="background: var(--cream); max-width: none;">
+  <div style="max-width: 720px; margin: 0 auto; padding: 0 2rem;">
+    <div class="section-header">
+      <h2 class="section-title">Regalo</h2>
+      <div class="ornament">
+        <span></span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 21 4 21 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="21" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        <span></span>
+      </div>
+    </div>
+
+    <div class="gift-card">
+      <p class="gift-main">¡El mejor regalo es compartir este día con vosotros!</p>
+      <p class="gift-sub">Si, además, quieres apoyarnos en esta nueva etapa que cogemos con muchísima ilusión, aquí compartimos la información:</p>
+      <div class="gift-iban">
+        <span class="gift-iban-label">Número de cuenta</span>
+        <div class="gift-iban-row">
+          <span class="gift-iban-number" translate="no">ES36&nbsp;1583&nbsp;0001&nbsp;1791&nbsp;1540&nbsp;6377</span>
+          <button type="button" class="gift-copy-btn" onclick="copyIban(this)" aria-label="Copiar IBAN" title="Copiar IBAN">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="9" y="9" width="11" height="11" rx="1.5"/>
+              <path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="monogram">P &amp; J</div>
+  <p class="footer-date">03 · Octubre · 2026<br>Alicante</p>
+  <p class="footer-message">
+    Gracias por formar parte de nuestra historia. Vuestra presencia es el mejor regalo que podríamos pedir.
+  </p>
+</footer>
+
+<script>
+  // ----- COUNTDOWN -----
+  const weddingDate = new Date('2026-10-03T17:00:00').getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
+
+    if (distance < 0) {
+      document.getElementById('countdown').innerHTML =
+        '<div style="font-family: var(--font-display); font-size: 1.8rem; color: var(--accent-deep);">¡Hoy es el día!</div>';
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById('days').textContent = String(days).padStart(3, '0');
+    document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+    document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+    document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ----- FORMULARIO (envío a Google Forms vía iframe oculto) -----
+  // Técnica más fiable que fetch: usamos el comportamiento clásico de los forms HTML.
+  // El form envía sus datos a un iframe oculto, igual que si fuera una navegación
+  // normal, y los bloqueadores/CORS no lo bloquean.
+  const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSeoQW05A5jXITrNtZD6DMsafAdVUgAPyH4C-6RRN8LDGApwaA/formResponse';
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const form = document.getElementById('rsvpForm');
+    const submitBtn = form.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Enviando...';
+    submitBtn.disabled = true;
+
+    // Crear o reutilizar el iframe oculto que recibirá la respuesta
+    let iframe = document.getElementById('hidden_iframe');
+    if (!iframe) {
+      iframe = document.createElement('iframe');
+      iframe.name = 'hidden_iframe';
+      iframe.id = 'hidden_iframe';
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+    }
+
+    // Configurar el form para que envíe al iframe oculto
+    form.action = GOOGLE_FORM_URL;
+    form.method = 'POST';
+    form.target = 'hidden_iframe';
+
+    // Listener para cuando el iframe termine de cargar (= envío completado)
+    const onLoaded = () => {
+      iframe.removeEventListener('load', onLoaded);
+      form.style.display = 'none';
+      document.getElementById('successMessage').classList.add('show');
+      document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    };
+    iframe.addEventListener('load', onLoaded);
+
+    // Disparar el envío del formulario al iframe oculto
+    form.submit();
+
+    // Salvaguarda: si el iframe tarda más de 3s en cargar, mostramos éxito igualmente
+    setTimeout(() => {
+      if (form.style.display !== 'none') {
+        form.style.display = 'none';
+        document.getElementById('successMessage').classList.add('show');
+        document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 3000);
+
+    return false;
+  }
+
+  // Cerrar menú móvil al hacer click en un enlace
+  document.querySelectorAll('nav ul a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelector('nav ul').classList.remove('open');
+    });
+  });
+
+  // ----- COPIAR IBAN -----
+  const COPY_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="1.5"/><path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/></svg>';
+  const CHECK_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="5 12 10 17 19 8"/></svg>';
+
+  function copyIban(btn) {
+    const iban = 'ES36 1583 0001 1791 1540 6377';
+    const cleanIban = iban.replace(/\s/g, '');
+
+    const fallback = () => {
+      const ta = document.createElement('textarea');
+      ta.value = cleanIban;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+    };
+
+    const showCopied = () => {
+      btn.innerHTML = CHECK_ICON;
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = COPY_ICON;
+        btn.classList.remove('copied');
+      }, 1800);
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(cleanIban).then(showCopied).catch(() => {
+        fallback();
+        showCopied();
+      });
+    } else {
+      fallback();
+      showCopied();
+    }
+  }
+</script>
+
+</body>
+</html>
