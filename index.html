@@ -1370,16 +1370,20 @@
         <div class="bus-route">
           <h4><span class="arrow">↗︎</span> Ida</h4>
           <div class="bus-route-detail">
-            <span class="label">Salida</span>
+            <span class="label">Salida · 16:00 h</span>
             <span class="value">Calle Óscar Esplá 37, junto a Consellería</span>
           </div>
           <div class="bus-route-detail">
-            <span class="label">Hora</span>
-            <span class="value">16:00 h</span>
+            <span class="label">Parada · 16:15 h</span>
+            <span class="value">Hotel Port Alicante City</span>
           </div>
           <div class="bus-route-detail">
-            <span class="label">Parada</span>
-            <span class="value">Hoteles Playa San Juan</span>
+            <span class="label">Parada · 16:25 h</span>
+            <span class="value">Hotel Alicante Golf</span>
+          </div>
+          <div class="bus-route-detail">
+            <span class="label">Parada · 16:35 h</span>
+            <span class="value">Hotel Torre San Juan</span>
           </div>
           <div class="bus-route-detail">
             <span class="label">Destino</span>
@@ -1439,14 +1443,6 @@
 
     <form class="rsvp-form" id="rsvpForm" onsubmit="return handleSubmit(event)">
 
-      <!-- 
-        ===========================================================================
-        IMPORTANTE: configura los IDs de Google Forms aquí.
-        Cambia los "entry.XXXXX" por los IDs reales de cada campo de tu Google Form.
-        Encontrarás cómo obtenerlos en las instrucciones que te pasó Claude.
-        ===========================================================================
-      -->
-
       <div class="form-group">
         <label for="nombre">Nombre completo</label>
         <input type="text" id="nombre" name="entry.1572207372" required />
@@ -1467,74 +1463,83 @@
       </div>
 
       <div class="form-group">
-        <label for="acompanantes">Número de acompañantes (sin contarte a ti)</label>
-        <select id="acompanantes" name="entry.1901194817">
-          <option value="0 - voy solo/a">0 — Voy solo/a</option>
-          <option value="1 acompañante">1 acompañante</option>
-          <option value="2 acompañantes">2 acompañantes</option>
-          <option value="3 acompañantes">3 acompañantes</option>
-        </select>
+        <label>¿Vienes acompañado?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="solo" name="entry.1901194817" value="Voy solo" onchange="toggleAcompanante()" />
+            <label for="solo">Voy solo</label>
+          </div>
+          <div class="radio-option">
+            <input type="radio" id="acomp" name="entry.1901194817" value="Voy acompañado" onchange="toggleAcompanante()" />
+            <label for="acomp">Voy acompañado</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" id="acompanante-group" style="display: none;">
+        <label for="nombre-acomp">¿Nombre acompañante?</label>
+        <input type="text" id="nombre-acomp" name="entry.722036004" placeholder="Nombre y apellidos" />
       </div>
 
       <div class="form-group">
         <label>¿Usarás el autobús?</label>
         <div class="radio-group">
           <div class="radio-option">
-            <input type="radio" id="bus-ida-vuelta" name="entry.82099182" value="Ida y vuelta" />
+            <input type="radio" id="bus-ida-vuelta" name="entry.82099182" value="Ida y vuelta" onchange="toggleBusOrigen()" />
             <label for="bus-ida-vuelta">Ida y vuelta</label>
           </div>
           <div class="radio-option">
-            <input type="radio" id="bus-solo-ida" name="entry.82099182" value="Solo ida" />
+            <input type="radio" id="bus-solo-ida" name="entry.82099182" value="Solo ida" onchange="toggleBusOrigen()" />
             <label for="bus-solo-ida">Solo ida</label>
           </div>
           <div class="radio-option">
-            <input type="radio" id="bus-solo-vuelta" name="entry.82099182" value="Solo vuelta" />
+            <input type="radio" id="bus-solo-vuelta" name="entry.82099182" value="Solo vuelta" onchange="toggleBusOrigen()" />
             <label for="bus-solo-vuelta">Solo vuelta</label>
           </div>
           <div class="radio-option">
-            <input type="radio" id="bus-no" name="entry.82099182" value="No, voy por mi cuenta" />
+            <input type="radio" id="bus-no" name="entry.82099182" value="No, voy por mi cuenta" onchange="toggleBusOrigen()" />
             <label for="bus-no">No, voy por mi cuenta</label>
           </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Intolerancias y alergias alimentarias</label>
-        <div class="checkbox-group">
-          <div class="checkbox-option">
-            <input type="checkbox" id="gluten" name="entry.1280234489" value="Gluten" />
-            <label for="gluten">Gluten</label>
+      <div class="form-group" id="bus-origen-group" style="display: none;">
+        <label>¿Desde dónde?</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input type="radio" id="orig-centro" name="entry.1443669543" value="Alicante Centro" onchange="toggleOtroOrigen()" />
+            <label for="orig-centro">Alicante Centro</label>
           </div>
-          <div class="checkbox-option">
-            <input type="checkbox" id="lactosa" name="entry.1280234489" value="Lactosa" />
-            <label for="lactosa">Lactosa</label>
+          <div class="radio-option">
+            <input type="radio" id="orig-golf" name="entry.1443669543" value="Hotel Alicante Golf" onchange="toggleOtroOrigen()" />
+            <label for="orig-golf">Hotel Alicante Golf</label>
           </div>
-          <div class="checkbox-option">
-            <input type="checkbox" id="frutos-secos" name="entry.1280234489" value="Frutos secos" />
-            <label for="frutos-secos">Frutos secos</label>
+          <div class="radio-option">
+            <input type="radio" id="orig-torre" name="entry.1443669543" value="Hotel Torre San Juan" onchange="toggleOtroOrigen()" />
+            <label for="orig-torre">Hotel Torre San Juan</label>
           </div>
-          <div class="checkbox-option">
-            <input type="checkbox" id="marisco" name="entry.1280234489" value="Marisco" />
-            <label for="marisco">Marisco</label>
+          <div class="radio-option">
+            <input type="radio" id="orig-port" name="entry.1443669543" value="Hotel Port Alicante" onchange="toggleOtroOrigen()" />
+            <label for="orig-port">Hotel Port Alicante</label>
           </div>
-          <div class="checkbox-option">
-            <input type="checkbox" id="huevo" name="entry.1280234489" value="Huevo" />
-            <label for="huevo">Huevo</label>
+          <div class="radio-option">
+            <input type="radio" id="orig-otro" name="entry.1443669543" value="__other_option__" onchange="toggleOtroOrigen()" />
+            <label for="orig-otro">Otro</label>
           </div>
-          <div class="checkbox-option">
-            <input type="checkbox" id="vegetariano" name="entry.1280234489" value="Vegetariano" />
-            <label for="vegetariano">Vegetariano</label>
-          </div>
-          <div class="checkbox-option">
-            <input type="checkbox" id="vegano" name="entry.1280234489" value="Vegano" />
-            <label for="vegano">Vegano</label>
-          </div>
+        </div>
+        <div id="orig-otro-input" style="display: none; margin-top: 0.9rem;">
+          <input type="text" id="orig-otro-text" name="entry.1443669543.other_option_response" placeholder="Indica dónde te recogemos" />
         </div>
       </div>
 
       <div class="form-group">
-        <label for="otras-intolerancias">Otras intolerancias o comentarios sobre la dieta</label>
-        <textarea id="otras-intolerancias" name="entry.1357998508" placeholder="Cuéntanos cualquier detalle adicional sobre alergias, intolerancias o preferencias..."></textarea>
+        <label for="intolerancias">Intolerancias y alergias alimentarias</label>
+        <textarea id="intolerancias" name="entry.1280234489" placeholder="Ej: Gluten, lactosa, frutos secos... o cualquier otra alergia que tengas"></textarea>
+      </div>
+
+      <div class="form-group" id="otras-intolerancias-group" style="display: none;">
+        <label for="otras-intolerancias">Intolerancias y alergias del acompañante</label>
+        <textarea id="otras-intolerancias" name="entry.1357998508" placeholder="Indica las intolerancias o alergias del acompañante"></textarea>
       </div>
 
       <div class="form-group">
@@ -1619,6 +1624,41 @@
 
   updateCountdown();
   setInterval(updateCountdown, 1000);
+
+  // ----- TOGGLE campos condicionales del formulario -----
+  function toggleAcompanante() {
+    const acomp = document.getElementById('acomp').checked;
+    const groupName = document.getElementById('acompanante-group');
+    const groupIntol = document.getElementById('otras-intolerancias-group');
+    groupName.style.display = acomp ? 'block' : 'none';
+    groupIntol.style.display = acomp ? 'block' : 'none';
+    if (!acomp) {
+      document.getElementById('nombre-acomp').value = '';
+      document.getElementById('otras-intolerancias').value = '';
+    }
+  }
+
+  function toggleBusOrigen() {
+    const busNo = document.getElementById('bus-no').checked;
+    const group = document.getElementById('bus-origen-group');
+    // Mostrar solo si NO ha marcado "voy por mi cuenta"
+    group.style.display = busNo ? 'none' : 'block';
+    if (busNo) {
+      // limpiar la selección
+      document.querySelectorAll('input[name="entry.1443669543"]').forEach(r => r.checked = false);
+      document.getElementById('orig-otro-input').style.display = 'none';
+      document.getElementById('orig-otro-text').value = '';
+    }
+  }
+
+  function toggleOtroOrigen() {
+    const otro = document.getElementById('orig-otro').checked;
+    const input = document.getElementById('orig-otro-input');
+    input.style.display = otro ? 'block' : 'none';
+    if (!otro) {
+      document.getElementById('orig-otro-text').value = '';
+    }
+  }
 
   // ----- FORMULARIO (envío a Google Forms vía iframe oculto) -----
   // Técnica más fiable que fetch: usamos el comportamiento clásico de los forms HTML.
